@@ -112,6 +112,17 @@ while running:
             else:
                 enemy_y += speed
 
+# SIMPLE ENEMY AI
+#        if ball_speed_x > 0:
+#            if enemy_y <= ball_y:
+#                enemy_y += 3
+#            if enemy_y >= 480:
+#                enemy_y = 480
+#            if enemy_y <= 0:
+#                enemy_y = 0
+#            if enemy_y >= ball_y:
+#                enemy_y -= 3
+
     if game_over:
         game_over_text = game_over_font.render("Game over!", False, "red", "black")
         game_over_rect = game_over_text.get_rect(center=(400, 250))
