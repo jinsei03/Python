@@ -16,7 +16,7 @@ def bestOf():
         goal = 3
     elif bestOf == 7:
         goal = 4
-    return goal
+    return goal, bestOf
 
 options = ["rock", "paper", "scissors"]
 
@@ -29,13 +29,7 @@ win = {
 pScore = 0
 cScore = 0
 
-goal = bestOf()
-
-games = {
-    2: 3,
-    3: 5,
-    4: 7
-}
+goal, games = bestOf()
 
 while pScore != goal and cScore != goal:
     choice = input("Rock, Paper, or Scissors?: ").lower()
@@ -61,9 +55,9 @@ while pScore != goal and cScore != goal:
     if pScore == goal or cScore == goal:
         print(f"Final scores are:\nPlayer: {pScore}\nComputer:{cScore}\n")
         if pScore > cScore:
-            print(f"Player has won the best of {games[goal]}!")
+            print(f"Player has won the best of {games}!")
         else:
-            print(f"Computer has wont the best of {games[goal]}!")
+            print(f"Computer has wont the best of {games}!")
 
         playAgain = input("Play again? [y/n]: ")
         while len(playAgain) != 1 or playAgain != "y" and playAgain != "n" or not playAgain.isalpha():
@@ -71,7 +65,7 @@ while pScore != goal and cScore != goal:
         if playAgain == "y":
             pScore = 0
             cScore = 0
-            goal = bestOf()
+            goal, games = bestOf()
         else:
             print("Good bye!")
 
