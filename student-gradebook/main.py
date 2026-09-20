@@ -3,24 +3,23 @@ while True:
     choice = input("1. Add Student and Grades\n2. View all students\n3. Determine letter grade of student\n4. Quit\n: ")
     if choice == "1":
         name = input("What is the Student's name: ")
-        grade1 = input("What is the students 1st grade: ")
-        grade2 = input("What is the students 2nd grade: ")
-        grade3 = input("What is the students 3rd grade: ")
+        grades = input("Enter grades separated by spaces: ")
+        grades = grades.split()
+        for index, grade in enumerate(grades):
+            grades[index] = int(grade)
         student_data = {
             "Name": name,
-            "Grade1": grade1,
-            "Grade2": grade2,
-            "Grade3": grade3
+            "Grades": grades
         }
         students.append(student_data)
         print(students)
-    elif choice == "2":
+    elif choice == "2" and students:
         for student in students:
             print("Name: ", student["Name"])
-            print("Grades:",student["Grade1"],",",student["Grade2"],",",student["Grade3"])
-    elif choice == "3":
+            print("Grades:", *student["Grades"])
+    elif choice == "3" and students:
         for student in students:
-            grade = (int(student["Grade1"]) + int(student["Grade2"]) + int(student["Grade3"])) / 3
+            grade =  sum(student["Grades"]) / len(student["Grades"])
             if grade >= 90:
                 print(student["Name"],"has a A")
             elif grade <= 89 and grade >= 80:
@@ -33,4 +32,9 @@ while True:
                 print(student["Name"], "has a F")
     elif choice == "4":
         break
+    elif not students:
+        print("THERE ARE NO STUDENTS!!!")
+    else:
+        print("Please choose an option between 1-4.")
+
 print("Good bye!")
